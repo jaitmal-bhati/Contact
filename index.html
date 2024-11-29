@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@300;400;700&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(40deg, white,silver);
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            overflow: hidden;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .flirty-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #ff6f61;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .flirty-button:hover {
+            background-color: #f56a5d;
+            transform: scale(1.1);
+        }
+        #final-number {
+            display: none;
+            margin-top: 20px;
+            font-size: 20px;
+            color: #fff;
+            font-family: 'Pacifico', cursive;
+        }
+        #final-number a {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #25D366;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        #final-number a:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button id="flirty-button" class="flirty-button">WhatsApp</button>
+        <div id="final-number">
+            Here’s my WhatsApp: <a href="https://wa.me/9887983474" target="_blank">Message!</a></a></a>
+        </div>
+    </div>
+
+    <script>
+        const button = document.getElementById('flirty-button');
+        const finalNumber = document.getElementById('final-number');
+        let clickCount = 0;
+        const flirtyTexts = [
+            "Do you still want my number?",
+            "Really? You're persistent!",
+            "Almost there, keep going!",
+            "Do you like challenges?",
+            "Hmm, are you sure?",
+            "One step closer!",
+            "You're determined, aren't you?",
+            "Okay, just wait a bit longer!",
+            "You're almost there!"
+        ];
+
+        const randomPosition = () => {
+            const x = Math.random() * (window.innerWidth - 150);
+            const y = Math.random() * (window.innerHeight - 50);
+            return { x, y };
+        };
+
+        const changeButtonAppearance = () => {
+            clickCount++;
+            if (clickCount >= 50) {
+                finalNumber.style.display = 'block';
+                button.style.display = 'none';
+                return;
+            }
+
+            const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+            const { x, y } = randomPosition();
+            button.style.backgroundColor = randomColor;
+            button.style.position = 'absolute';
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
+            button.textContent = flirtyTexts[Math.floor(Math.random() * flirtyTexts.length)];
+        };
+
+        button.addEventListener('click', changeButtonAppearance);
+
+        setTimeout(() => {
+            finalNumber.style.display = 'block';
+            button.style.display = 'none';
+        }, 60000); // 2 minutes in milliseconds
+    </script>
+</body>
+</html>
